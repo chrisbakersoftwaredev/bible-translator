@@ -1,0 +1,25 @@
+<div class="original-language-panel">
+  <div class="panel-header">
+    <h3>Original Language</h3>
+    <span class="language-label">{{ getLanguageLabel() }}</span>
+  </div>
+
+  <div class="verses-container">
+    @if (selectedVerses().length > 0) {
+      @for (verse of selectedVerses(); track verse.verseNumber) {
+        <div class="verse-item">
+          <span class="verse-number">{{ verse.verseNumber }}</span>
+          <span class="original-text" [dir]="selectedLanguage() === 'hebrew' ? 'rtl' : 'ltr'">
+            {{ verse.original }}
+          </span>
+          <div class="transliteration" [title]="verse.text">
+            <small>English: {{ verse.text }}</small>
+          </div>
+        </div>
+      }
+    } @else {
+      <p class="no-verses">Select a chapter to display original text</p>
+    }
+  </div>
+</div>
+

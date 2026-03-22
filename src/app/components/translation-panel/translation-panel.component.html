@@ -1,0 +1,26 @@
+<div class="translation-panel" [class.left]="position === 'left'" [class.right]="position === 'right'">
+  <div class="panel-header">
+    <h3>{{ title }}</h3>
+    <form [formGroup]="form" class="translation-select">
+      <select formControlName="translation" class="form-control">
+        @for (translation of translations(); track translation.id) {
+          <option [value]="translation.id">{{ translation.name }}</option>
+        }
+      </select>
+    </form>
+  </div>
+
+  <div class="verses-container">
+    @if (selectedVersesDisplay().length > 0) {
+      @for (verseDisplay of selectedVersesDisplay(); track verseDisplay.verse) {
+        <div class="verse-item">
+          <span class="verse-number">{{ verseDisplay.verse }}</span>
+          <span class="verse-text">{{ verseDisplay.text }}</span>
+        </div>
+      }
+    } @else {
+      <p class="no-verses">Select a verse to display</p>
+    }
+  </div>
+</div>
+
